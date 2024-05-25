@@ -1,3 +1,16 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyA6GFBuyJeWJ_BrWyqjL3EdRj2JCTbSjxc",
+  authDomain: "car1-e17e0.firebaseapp.com",
+  databaseURL: "https://car1-e17e0-default-rtdb.firebaseio.com",
+  projectId: "car1-e17e0",
+  storageBucket: "car1-e17e0.appspot.com",
+  messagingSenderId: "1064887117913",
+  appId: "1:1064887117913:web:8d662f6b8b94da7016e948"
+};
+
+// Initialize Firebase
+var app = firebase.initializeApp(firebaseConfig);
+
 var questions = [  
     {
       question: "HTML Stands for",
@@ -80,6 +93,8 @@ var questions = [
   var score = 0;
   var min = 1;
   var sec = 59;
+
+ 
   
   setInterval(function () {
     timer.innerHTML = `${min}:${sec}`;
@@ -94,6 +109,9 @@ var questions = [
       }
     }
   }, 1000);
+  
+
+
   
   function nextQuestion() {
     var getOptions = document.getElementsByName("option");
@@ -130,6 +148,12 @@ var questions = [
       min = 1;
       sec = 59;
     }
+
+    
+    var id=Date.now().toString(25);
+    firebase.database().ref("total/" +id).set(questions);
+      console.log(questions)
+  
   }
      
   function target() {
